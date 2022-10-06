@@ -1,0 +1,6 @@
+brew install exa
+brew install ripgrep
+brew install btop
+brew install entr
+brew install bat
+brew install ncdu
