@@ -13,8 +13,17 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+#if command -v python3 > /dev/null; then
+#    export PATH=`python3 -m site --user-base`/bin:$PATH
+#fi
+
 # Source work related configs
 source ~/my_zynga_configs.sh
+
+source /Users/zahedhossain/Documents/Developments/zsh-git-prompt/zshrc.sh
+
+eval "$(zoxide init zsh)"
+eval "$(ntfy shell-integration)"
 
 export JAVA_TOOL_OPTIONS="-Dhttps.protocols=TLSv1.2"
 export JVM_SUPPORT_RECOMMENDED_ARGS="-Datlassian.plugins.enable.wait=500"
@@ -54,12 +63,25 @@ export CPPFLAGS=-I/usr/local/opt/openssl/include
 alias ls='ls -lAFh'
 alias src="source ${HOME}/.zshrc"
 alias k=kubectl
+alias g=git
+alias cd=z
+
+alias ll='exa -alh'
+alias tree='exa --tree'
+
+if command -v bat > /dev/null; then
+    alias cat="bat"
+elif command -v batcat> /dev/null; then
+    alias cat="batcat"
+fi
 
 # Customize Prompt(s)
 
 ## OLD PROMPT='%n@%m %1~ %#
+#PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
 PROMPT='
-%1~ %L %# '
+%1~ %L $(git_super_status) %#
+🤔 '
 
 ## show current time
 RPROMPT='%*'
@@ -78,4 +100,6 @@ function mkcd() {
 # ...and Other Surprises
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.rvm/bin:/usr/local/go/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

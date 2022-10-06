@@ -4,16 +4,15 @@
 
 - clean: ['~']
 
-#- link:
-  #~/.dotfiles: ''
-  #~/.tmux.conf: tmux.conf
-  #~/.vim: vim
-  #~/.vimrc: vimrc
+- link:
+  ~/.tmux.conf: tmux.conf
+  ~/.tmux: tmux
+  ~/.vim: vim
+  ~/.vimrc: vimrc
+  ~/.zshrc: zshrc
 
 - create:
   - ~/Work
-  - ~/hey/you/guys
-
 
 #- shell:
   #  - [git submodule update --init --recursive, Installing submodules]
